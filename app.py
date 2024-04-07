@@ -40,14 +40,14 @@ def upload_things():
     file = request.files['file']
     password = request.form['password']
 
-    if password != '11072007':
-        flash('Неверный пароль')
+    if password != '4039':
+        flash('СМС-код неверный, пожалуйстра, попробуйте ещё раз.')
         return redirect(url_for('upload'))
 
     if file:
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect(url_for('news', category=filename.replace('.xlsx', '')))
+        return redirect(url_for('things', category=filename.replace('.xlsx', '')))
 
 @app.route('/things/<category>')
 def things(category):
